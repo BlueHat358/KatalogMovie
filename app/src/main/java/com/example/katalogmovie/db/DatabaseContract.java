@@ -7,6 +7,7 @@ import android.provider.BaseColumns;
 public class DatabaseContract {
 
     public static final String TABLE_NAME = "FAVORITE_TABLE"
+
     public static final String AUTHORITY = "com.example.katalogmovie";
     private static final String SCHEME = "content";
 

@@ -3,6 +3,8 @@ package com.example.katalogmovie;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.HandlerThread;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +26,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.katalogmovie.Support.ItemClickSupport;
 import com.example.katalogmovie.adapter.MovieAdapter;
+import com.example.katalogmovie.data.Favorite;
+import com.example.katalogmovie.data.LoadFavoriteCallback;
 import com.example.katalogmovie.data.Movie;
 import com.example.katalogmovie.ui.DetailActivity;
 import com.example.katalogmovie.ui.FavoriteFragment;
@@ -35,12 +39,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
+
+import static com.example.katalogmovie.db.DatabaseContract.CONTENT_URI;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, LoadFavoriteCallback.LoadNotesCallback {
 
     RecyclerView rv_movie;
     RequestQueue requestQueue;
@@ -69,6 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         BottomNavigationView navigationView = (BottomNavigationView) view.findViewById(R.id.navigation);
 
@@ -182,5 +190,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         intent.putExtra(DetailActivity.EXTRA_RATING, movie.getRating());
         intent.putExtra(DetailActivity.EXTRA_VOTE, movie.getVote());
         startActivity(intent);
+    }
+
+    @Override
+    public void preExecute() {
+
+    }
+
+    @Override
+    public void postExecute(ArrayList<Favorite> favorites) {
+
     }
 }

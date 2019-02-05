@@ -3,7 +3,6 @@ package com.example.katalogmovie.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.support.annotation.Nullable;
 
 import static com.example.katalogmovie.db.DatabaseContract.TABLE_NAME;
 import static com.example.katalogmovie.db.DatabaseContract.*;
@@ -19,12 +18,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public String CREATE_FAVORITE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" +
             FavoriteColumn.ID + "TEXT PRIMARY KEY, " +
-            FavoriteColumn.JUDUL + "TEXT, " +
-            FavoriteColumn.RILIS + "TEXT, " +
-            FavoriteColumn.DESKRIPSI + "TEXT, " +
-            FavoriteColumn.IMAGE + "TEXT, " +
-            FavoriteColumn.RATING + "TEXT, " +
-            FavoriteColumn.VOTE + "TEXT);";
+            FavoriteColumn.JUDUL + "TEXT NOT NULL, " +
+            FavoriteColumn.RILIS + "TEXT NOT NULL, " +
+            FavoriteColumn.DESKRIPSI + "TEXT NOT NULL, " +
+            FavoriteColumn.IMAGE + "TEXT NOT NULL, " +
+            FavoriteColumn.RATING + "TEXT NOT NULL, " +
+            FavoriteColumn.VOTE + "TEXT NOT NULL);";
 
 
     @Override
@@ -34,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP IF IS EXISTS ", TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DatabaseContract.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 }

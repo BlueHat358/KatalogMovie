@@ -1,7 +1,19 @@
 package com.example.katalogmovie.data;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.example.katalogmovie.db.DatabaseContract;
+
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.DESKRIPSI;
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.ID;
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.IMAGE;
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.JUDUL;
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.RATING;
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.RILIS;
+import static com.example.katalogmovie.db.DatabaseContract.FavoriteColumn.VOTE;
+import static com.example.katalogmovie.db.DatabaseContract.getColumnString;
 
 public class Favorite implements Parcelable {
     String id, judul, rilis, deskripsi, image, rating, vote;
@@ -79,6 +91,25 @@ public class Favorite implements Parcelable {
     }
 
     public Favorite() {
+    }
+
+    public Favorite(String id, String judul, String rilis, String deskripsi, String image, String rating, String vote) {
+        this.id = id;
+        this.judul = judul;
+        this.deskripsi = deskripsi;
+        this.image = image;
+        this.rating = rating;
+        this.vote = vote;
+    }
+
+    public Favorite(Cursor cursor){
+        this.id = getColumnString(cursor, ID);
+        this.judul = getColumnString(cursor, JUDUL);
+        this.rilis = getColumnString(cursor, RILIS);
+        this.deskripsi = getColumnString(cursor, DESKRIPSI);
+        this.image = getColumnString(cursor, IMAGE);
+        this.rating = getColumnString(cursor, RATING);
+        this.vote = getColumnString(cursor, VOTE);
     }
 
     protected Favorite(Parcel in) {
