@@ -183,6 +183,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Load
 
     private void showSelectedMovie(Movie movie){
         Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_ID, movie.getId());
         intent.putExtra(DetailActivity.EXTRA_JUDUL, movie.getJudul());
         intent.putExtra(DetailActivity.EXTRA_RILIS, movie.getRilis());
         intent.putExtra(DetailActivity.EXTRA_DESKRIPSI, movie.getDeskripsi());

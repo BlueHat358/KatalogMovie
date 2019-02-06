@@ -16,14 +16,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public String CREATE_FAVORITE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" +
-            FavoriteColumn.ID + "TEXT PRIMARY KEY, " +
-            FavoriteColumn.JUDUL + "TEXT NOT NULL, " +
-            FavoriteColumn.RILIS + "TEXT NOT NULL, " +
-            FavoriteColumn.DESKRIPSI + "TEXT NOT NULL, " +
-            FavoriteColumn.IMAGE + "TEXT NOT NULL, " +
-            FavoriteColumn.RATING + "TEXT NOT NULL, " +
-            FavoriteColumn.VOTE + "TEXT NOT NULL);";
+
+    private static final String CREATE_FAVORITE_TABLE = String.format("CREATE TABLE %s" +
+                    " (%s TEXT PRIMARY KEY," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL," +
+                    " %s TEXT NOT NULL)",
+            DatabaseContract.TABLE_NAME,
+            FavoriteColumn.ID,
+            FavoriteColumn.JUDUL,
+            FavoriteColumn.RILIS,
+            FavoriteColumn.DESKRIPSI,
+            FavoriteColumn.IMAGE,
+            FavoriteColumn.RATING,
+            FavoriteColumn.VOTE
+    );
 
 
     @Override

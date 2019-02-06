@@ -107,5 +107,5 @@ public class FavoriteProvider extends ContentProvider {
         }
         getContext().getContentResolver().notifyChange(CONTENT_URI, null);
         return updated;
-
+    }
 }

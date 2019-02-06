@@ -96,6 +96,7 @@ public class Favorite implements Parcelable {
     public Favorite(String id, String judul, String rilis, String deskripsi, String image, String rating, String vote) {
         this.id = id;
         this.judul = judul;
+        this.rilis = rilis;
         this.deskripsi = deskripsi;
         this.image = image;
         this.rating = rating;
